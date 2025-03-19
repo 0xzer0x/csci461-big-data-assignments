@@ -5,12 +5,12 @@ FROM ubuntu:latest
 RUN apt-get update && \
     apt-get install -y python3 python3-pip 
 
-RUN pip3 install --break-system-packages pandas numpy seaborn matplotlib scikit-learn scipy
+RUN pip3 install --break-system-packages pandas numpy seaborn matplotlib scikit-learn scipy openpyxl
 # Create the /home/doc-bd-a1/ directory
 RUN mkdir -p /home/doc-bd-a1
 
 # Copy the dataset into the container
-COPY sentiment.csv /home/doc-bd-a1/sentiment.csv
+COPY cancer_data.xlsx /home/doc-bd-a1/cancer_data.xlsx
 COPY load.py /home/doc-bd-a1/load.py
 
 # Set the working directory
