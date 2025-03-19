@@ -13,5 +13,5 @@ try:
     print(df.head())
 except Exception as e:
     print(f"Error loading the dataset: {e}")
-# save dataset for
+# save dataset for next step
 df.to_csv("/home/doc-bd-a1/loaded_data.csv", index=False)
