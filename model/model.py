@@ -84,8 +84,9 @@ def ScatterBatch(data, *columns, k=0):
     axes = axes.flatten()
 
     plotIndex = 0
-
-
+    fname = "k.txt"
+    with open(fname, "a") as F:
+        F.write(f"*******************************************\nNew execution log: (ran with K = {k})\n(this is appended to the file each time model.py is run)\n*******************************************\n")
     for i in range(columnLength):
         for j in range(i + 1, columnLength):
 
@@ -96,8 +97,14 @@ def ScatterBatch(data, *columns, k=0):
 
             axes[plotIndex].set_title(f"{columns[i]} vs {columns[j]}")
             plotIndex += 1
+            centerIndices, uniquesCount = np.unique(assignedPoints, return_counts=True)
 
 
+            with open(fname, "a") as f:
+                f.write(f"2D clustering for: {columns[i]} vs {columns[j]}\n")
+                for Y in centerIndices:
+                    f.write(f"\n points assigned to center {centerIndices[Y]}: {uniquesCount[Y]} points\n")
+                f.write("--------------------\n\n")
     # Turn off any unused axes
     for idx in range(plotIndex, len(axes)):
         fig.delaxes(axes[idx])  # Remove unused subplots (because the subplotting always results in an even sized grid of subplots)
