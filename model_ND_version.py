@@ -81,5 +81,12 @@ print(X.head())
 k = 3 #number of centers
 
 centers, assignedPoints = KMeans(X, K=k) #4D Clustering with k = 3 (3 centers)
+fname = "k_nd.txt"
 
-print(f"Centers from clustering:\n{centers}\n-------------------\nAssigned points from the data to the center indices:\n{assignedPoints}")
+centerIndices, uniquesCount = np.unique(assignedPoints, return_counts=True)
+with open(fname, "a") as f:
+    f.write(f"*******************************************\nNew execution log: (ran with K = {k})\n(this is appended to the file each time model_ND_version.py is run)\n*******************************************\n")
+    for i in centerIndices:
+        f.write(f"points assigned to center {centerIndices[i]}: {uniquesCount[i]} points\n")
+
+#print(f"Centers from clustering:\n{centers}\n-------------------\nAssigned points from the data to the center indices:\n{assignedPoints}")
