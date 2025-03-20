@@ -1,9 +1,10 @@
 FROM ubuntu:latest
 
 RUN apt-get update && \
-  apt-get install -y python3 python3-pip 
+  apt-get install --no-install-recommends -y python3 python3-pip && \
+  rm -rf /var/lib/apt/lists/*
 
-RUN pip3 install --break-system-packages pandas numpy seaborn matplotlib scikit-learn scipy openpyxl
+RUN pip3 install --no-cache-dir --break-system-packages pandas numpy seaborn matplotlib scikit-learn scipy openpyxl
 
 WORKDIR /home/doc-bd-a1
 
