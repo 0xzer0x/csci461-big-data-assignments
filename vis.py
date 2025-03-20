@@ -42,4 +42,6 @@ for j in range(i + 1, len(axes)):
     fig.delaxes(axes[j])  # Deletes empty subplot
 
 plt.tight_layout()
+plt.savefig("vis.png", dpi=300, bbox_inches='tight')  # High resolution & no extra whitespace
+
 plt.show()
